@@ -2,7 +2,7 @@
 
 ## Functionalities
 
--   the application receives the text provided by the user in the `<textarea>` field,
+-   the application receives the text provided by the user in the `<textarea>` element,
 -   translates it into the given languages (English, German, Spanish) using [translate](https://www.npmjs.com/package/translate?activeTab=readme) package,
 -   creates a PDF file where the translation from each language is on a separate page using [pdf-lib](https://www.npmjs.com/package/pdf-lib) package,
 -   forces the PDF file download.
@@ -37,6 +37,6 @@ In a web browser, open application using:
 http://localhost:3000
 ```
 
-# Preview
+## Preview
 
 ![Alt Text](./readme-resources/translator-preview.gif)
