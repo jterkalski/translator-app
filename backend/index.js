@@ -1,10 +1,10 @@
 const express = require('express');
-const { createProxy } = require('./utils/proxy');
 const { createPdf } = require('./utils/createPdf');
 const { translateString } = require('./utils/translateString');
-const { SERVER_PORT } = require('./utils/configuration');
 
 const app = express();
+
+const SERVER_PORT = 8080;
 
 app.use(express.json());
 
@@ -44,7 +44,5 @@ app.post('/upload-text', async (req, res) => {
     res.setHeader('Content-Disposition', 'attachment; filename=translation.pdf');
     res.end(pdfData);
 });
-
-createProxy(app, '/', 'http://localhost:3000/');
 
 app.listen(SERVER_PORT, () => console.log(`Server is listening on port ${SERVER_PORT}.`));

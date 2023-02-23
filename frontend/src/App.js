@@ -35,7 +35,12 @@ const App = () => {
     return (
         <div className='app'>
             <div className='header'>Enter the text:</div>
-            <textarea ref={textareaRef} onChange={handleChange} placeholder='Aa' />
+            <textarea
+                ref={textareaRef}
+                onChange={handleChange}
+                placeholder='Aa'
+                spellcheck='false'
+            />
             <button onClick={handleDownload}>Download PDF</button>
         </div>
     );
