@@ -7,7 +7,6 @@ const { SERVER_PORT } = require('./utils/configuration');
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
 app.post('/upload-text', async (req, res) => {
     const originalText = req.body.text;
@@ -27,22 +26,23 @@ app.post('/upload-text', async (req, res) => {
             to: 'es',
         });
     } catch (error) {
-        res.send({ error: 'Translating error.' });
+        console.error('Text translation error.', error);
+        res.sendStatus(500);
         return;
     }
 
-    let resultPdf;
+    let pdfData;
     try {
-        resultPdf = await createPdf([originalText, englishText, germanText, spanishText]);
-        res.setHeader('Content-Length', resultPdf.length);
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', 'attachment; filename=translation.pdf');
-        res.end(resultPdf);
+        pdfData = await createPdf([originalText, englishText, germanText, spanishText]);
     } catch (error) {
-        console.error(error);
-        res.send({ error: 'Creating PDF error.' });
+        console.error('PDF creation error.', error);
+        res.sendStatus(500);
         return;
     }
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Length', pdfData.length);
+    res.setHeader('Content-Disposition', 'attachment; filename=translation.pdf');
+    res.end(pdfData);
 });
 
 createProxy(app, '/', 'http://localhost:3000/');
