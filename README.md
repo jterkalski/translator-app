@@ -2,7 +2,7 @@
 
 ## Functionalities
 
--   the application receives the text provided by the user in the `<textarea>` element,
+-   the application receives the text in Polish provided by the user in the `<textarea>` element,
 -   translates it into the given languages (English, German, Spanish) using [translate](https://www.npmjs.com/package/translate?activeTab=readme) package,
 -   creates a PDF file where the translation from each language is on a separate page using [pdf-lib](https://www.npmjs.com/package/pdf-lib) package,
 -   forces the PDF file download.
