@@ -1,10 +1,10 @@
 const express = require('express');
-const { createPdf } = require('./utils/createPdf');
-const { translateString } = require('./utils/translateString');
+const translate = require('translate');
+const createPdf = require('./utils/createPdf');
 
 const app = express();
 
-const SERVER_PORT = 8080;
+const SERVER_PORT = process.env.SERVER_PORT ?? 8080;
 
 app.use(express.json());
 
@@ -13,15 +13,15 @@ app.post('/upload-text', async (req, res) => {
     const originalLanguage = 'pl';
     let englishText, germanText, spanishText;
     try {
-        englishText = await translateString(originalText, {
+        englishText = await translate(originalText, {
             from: originalLanguage,
             to: 'en',
         });
-        germanText = await translateString(originalText, {
+        germanText = await translate(originalText, {
             from: originalLanguage,
             to: 'de',
         });
-        spanishText = await translateString(originalText, {
+        spanishText = await translate(originalText, {
             from: originalLanguage,
             to: 'es',
         });
