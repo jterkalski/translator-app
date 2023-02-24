@@ -38,8 +38,8 @@ const App = () => {
             <textarea
                 ref={textareaRef}
                 onChange={handleChange}
-                placeholder='Aa'
-                spellcheck='false'
+                placeholder='Type something...'
+                spellCheck={false}
             />
             <button onClick={handleDownload}>Download PDF</button>
         </div>
